@@ -1,13 +1,9 @@
+import type { ButtonHTMLAttributes } from "react";
 import { ButtonContainer } from "./ButtonStyle";
 
-
-interface buttonProps{
-  label:string;
-
-}
-
-export default function Button({label}:buttonProps) {
-  return (
-    <ButtonContainer>{label}</ButtonContainer>
-  )
+export default function Button({
+  children,
+  ...props
+}: ButtonHTMLAttributes<HTMLButtonElement>) {
+  return <ButtonContainer {...props}>{children}</ButtonContainer>;
 }

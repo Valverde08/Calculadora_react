@@ -1,9 +1,13 @@
+import type { HtmlHTMLAttributes } from "react";
 import { InputContainer } from "./InputStyle";
 
-export default function Input() {
+export default function Input({
+  children,
+  ...props
+}: HtmlHTMLAttributes<HTMLDivElement>) {
   return (
-    <InputContainer>
-      <input disabled={true} />
+    <InputContainer {...props}>
+      <div>{children}</div>
     </InputContainer>
   );
 }
