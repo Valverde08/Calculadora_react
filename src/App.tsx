@@ -10,6 +10,8 @@ function App() {
     setNumero((prev) => `${prev}${num}`);
   };
 
+  const erase = () => {};
+
   return (
     <Container>
       <Content>
