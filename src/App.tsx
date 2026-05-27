@@ -4,29 +4,48 @@ import Button from "./Components/Button/Button";
 import { useState } from "react";
 
 function App() {
-  const [numero, setNumero] = useState<string>("");
+  const [currentNumber, setCurrentNumber] = useState<string>("");
+  const [firstNumber, setFirstNumber] = useState<string >("");
+  const [secondNumber, setSecondNumber] = useState<string >("");
+  const [operator,setOperator] = useState<string>('')
+
 
   const addNumero = (num: string) => {
-    setNumero((prev) => `${prev}${num}`);
+    
+    setCurrentNumber((prev) => `${prev}${num}`);
   };
 
-  const erase = () => {};
+  const clear = () => {
+    setCurrentNumber('')
+  };
+
+  const handleOperation = (operator:string)=>{
+        setFirstNumber(currentNumber),
+        setOperator(operator)
+        clear()
+  }
+ 
+  const handleResult = ()=>{
+    
+  }
 
   return (
     <Container>
       <Content>
-        <Input>{numero}</Input>
+        <Input>{currentNumber}</Input>
+        <Input>{firstNumber}</Input>
+        <Input>{operator}</Input>
         <Row>
-          <Button onClick={() => addNumero("**")}>**</Button>
-          <Button onClick={() => addNumero("/")}>/</Button>
-          <Button onClick={() => addNumero("*")}>*</Button>
-          <Button onClick={() => addNumero("-")}>-</Button>
+          <Button onClick={clear}>C</Button>
+          <Button onClick={()=>handleOperation("/")}>/</Button>
+          <Button onClick={()=>handleOperation("*")}>*</Button>
+          <Button onClick={()=>handleOperation("-")}>-</Button>
         </Row>
         <Row>
           <Button onClick={() => addNumero("7")}>7</Button>
           <Button onClick={() => addNumero("8")}>8</Button>
           <Button onClick={() => addNumero("9")}>9</Button>
-          <Button onClick={() => addNumero("+")}>+</Button>
+          <Button onClick={()=>handleOperation("+")}>+</Button>
         </Row>
         <Row>
           <Button onClick={() => addNumero("4")}>4</Button>
