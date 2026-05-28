@@ -7,6 +7,7 @@ function App() {
   const [currentNumber, setCurrentNumber] = useState<string>("");
   const [firstNumber, setFirstNumber] = useState<string >("");
   const [secondNumber, setSecondNumber] = useState<string >("");
+  const [result, setResult] = useState<number>();
   const [operator,setOperator] = useState<string>('')
 
 
@@ -26,7 +27,11 @@ function App() {
   }
  
   const handleResult = ()=>{
-    
+    const resultado = Number(firstNumber) + Number(currentNumber)
+      
+    return  setResult(resultado)
+      
+      
   }
 
   return (
@@ -35,6 +40,7 @@ function App() {
         <Input>{currentNumber}</Input>
         <Input>{firstNumber}</Input>
         <Input>{operator}</Input>
+        <Input>{result}</Input>
         <Row>
           <Button onClick={clear}>C</Button>
           <Button onClick={()=>handleOperation("/")}>/</Button>
@@ -57,7 +63,7 @@ function App() {
           <Button onClick={() => addNumero("*3")}>3</Button>
           <Button onClick={() => addNumero("*2")}>2</Button>
           <Button onClick={() => addNumero("1")}>1</Button>
-          <Button onClick={() => addNumero("**")}>=</Button>
+          <Button onClick={handleResult}>=</Button>
         </Row>
         <Row>
           <Button onClick={() => addNumero("0")}>0</Button>
