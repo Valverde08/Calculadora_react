@@ -7,12 +7,14 @@ function App() {
   const [currentNumber, setCurrentNumber] = useState<string>("");
   const [firstNumber, setFirstNumber] = useState<string >("");
   const [secondNumber, setSecondNumber] = useState<string >("");
+  const [ponto,setPonto] = useState<boolean>(false)
   const [result, setResult] = useState<number>();
   const [operator,setOperator] = useState<string>('')
 
 
   const addNumero = (num: string) => {
-    
+    if(ponto)
+      setCurrentNumber("0.")
     setCurrentNumber((prev) => `${prev}${num}`);
   };
 
@@ -21,15 +23,37 @@ function App() {
   };
 
   const handleOperation = (operator:string)=>{
+
+        
         setFirstNumber(currentNumber),
         setOperator(operator)
         clear()
   }
  
   const handleResult = ()=>{
-    const resultado = Number(firstNumber) + Number(currentNumber)
+     Number(firstNumber) + Number(currentNumber)
       
-    return  setResult(resultado)
+    switch (operator){
+      case"+":
+        setResult(Number(firstNumber) + Number(currentNumber))
+        break
+      
+      case"-":
+        setResult(Number(firstNumber) - Number(currentNumber))
+        break
+      
+      case"/":
+        setResult(Number(firstNumber) / Number(currentNumber))
+        break
+
+      case"*":
+        setResult(Number(firstNumber) * Number(currentNumber))
+        break
+
+      default:
+        console.log("Não é possível fazer esse cáclulo!");
+        
+    }
       
       
   }
@@ -39,6 +63,8 @@ function App() {
       <Content>
         <Input>{currentNumber}</Input>
         <Input>{firstNumber}</Input>
+
+        
         <Input>{operator}</Input>
         <Input>{result}</Input>
         <Row>
@@ -57,11 +83,11 @@ function App() {
           <Button onClick={() => addNumero("4")}>4</Button>
           <Button onClick={() => addNumero("5")}>5</Button>
           <Button onClick={() => addNumero("6")}>6</Button>
-          <Button onClick={() => addNumero(".")}>.</Button>
+          <Button onClick={() => (addNumero("."),setPonto(true))}>.</Button>
         </Row>
         <Row>
-          <Button onClick={() => addNumero("*3")}>3</Button>
-          <Button onClick={() => addNumero("*2")}>2</Button>
+          <Button onClick={() => addNumero("3")}>3</Button>
+          <Button onClick={() => addNumero("2")}>2</Button>
           <Button onClick={() => addNumero("1")}>1</Button>
           <Button onClick={handleResult}>=</Button>
         </Row>
