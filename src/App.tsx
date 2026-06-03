@@ -6,16 +6,21 @@ import { useState } from "react";
 function App() {
   const [currentNumber, setCurrentNumber] = useState<string>("");
   const [firstNumber, setFirstNumber] = useState<string >("");
-  const [secondNumber, setSecondNumber] = useState<string >("");
-  const [ponto,setPonto] = useState<boolean>(false)
+  
   const [result, setResult] = useState<number>();
   const [operator,setOperator] = useState<string>('')
 
 
   const addNumero = (num: string) => {
-    if(ponto)
-      setCurrentNumber("0.")
-    setCurrentNumber((prev) => `${prev}${num}`);
+    if(currentNumber == "."){
+      setCurrentNumber("0.");
+      
+    }else{
+      setCurrentNumber((prev) => `${prev}${num}`);
+    }
+    
+      
+    
   };
 
   const clear = () => {
@@ -83,7 +88,7 @@ function App() {
           <Button onClick={() => addNumero("4")}>4</Button>
           <Button onClick={() => addNumero("5")}>5</Button>
           <Button onClick={() => addNumero("6")}>6</Button>
-          <Button onClick={() => (addNumero("."),setPonto(true))}>.</Button>
+          <Button onClick={() => addNumero(".")}>.</Button>
         </Row>
         <Row>
           <Button onClick={() => addNumero("3")}>3</Button>
