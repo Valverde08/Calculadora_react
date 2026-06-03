@@ -6,7 +6,7 @@ import { useState } from "react";
 function App() {
   const [currentNumber, setCurrentNumber] = useState<string>("");
   const [firstNumber, setFirstNumber] = useState<string >("");
-  
+  const [ponto,setPonto] = useState<boolean>(false)
   const [result, setResult] = useState<number>();
   const [operator,setOperator] = useState<string>('')
 
@@ -14,12 +14,12 @@ function App() {
   const addNumero = (num: string) => {
     if(currentNumber == "."){
       setCurrentNumber("0.");
-      
+      setPonto(true)
     }else{
       setCurrentNumber((prev) => `${prev}${num}`);
+      setPonto(false)
     }
-    
-      
+          
     
   };
 
@@ -88,7 +88,7 @@ function App() {
           <Button onClick={() => addNumero("4")}>4</Button>
           <Button onClick={() => addNumero("5")}>5</Button>
           <Button onClick={() => addNumero("6")}>6</Button>
-          <Button onClick={() => addNumero(".")}>.</Button>
+          <Button onClick={() => addNumero(".")} disabled={ponto}>.</Button>
         </Row>
         <Row>
           <Button onClick={() => addNumero("3")}>3</Button>
